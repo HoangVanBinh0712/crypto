@@ -115,10 +115,7 @@ public class TradeService {
 
         UserTradingHistoryResponse response = new UserTradingHistoryResponse();
         List<TradeTransaction> tradeHistory = tradeTransactionRepository.findByUserId(userId);
-        response.setUserTradingHistory(tradeHistory.stream().map(x -> {
-            UserTradingHistoryResponse.UserTradingHistoryDto data = getUserTradingHistoryDto(x, x.getPriceSnapshot());
-            return data;
-        }).collect(Collectors.toList()));
+        response.setUserTradingHistory(tradeHistory.stream().map(x -> getUserTradingHistoryDto(x, x.getPriceSnapshot())).collect(Collectors.toList()));
         return response;
     }
 }

@@ -61,7 +61,7 @@ public class TradeTransaction {
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = jakarta.persistence.FetchType.LAZY)
     @JoinColumn(name = "price_snapshot_id", nullable = false)
     private PriceSnapshot priceSnapshot;
 }
