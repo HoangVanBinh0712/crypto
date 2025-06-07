@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +20,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "price_snapshot")
+@Table(name = "price_snapshot",
+indexes = {
+        @Index(name = "idx_price_snapshot_symbol_timestamp", columnList = "symbol, timestamp DESC")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

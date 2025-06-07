@@ -22,4 +22,13 @@ public enum TradeType {
         }
         throw new ApiException("Unknown trade type: " + value);
     }
+
+    public static TradeType fromSymbol(String symbol) {
+        for (TradeType type : TradeType.values()) {
+            if (type.value.equalsIgnoreCase(symbol)) {
+                return type;
+            }
+        }
+        throw new ApiException("Unknown trade symbol: " + symbol);
+    }
 }

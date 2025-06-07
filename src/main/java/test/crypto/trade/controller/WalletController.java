@@ -1,5 +1,6 @@
 package test.crypto.trade.controller;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public class WalletController {
     private WalletService walletService;
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<?> getUserWalletBalances(@PathVariable Long userId) {
+    public ResponseEntity<?> getUserWalletBalances(@PathVariable @NotNull(message = "User id must not be null") Long userId) {
         return ResponseEntity.ok(walletService.getUserWallets(userId));
     }
 }

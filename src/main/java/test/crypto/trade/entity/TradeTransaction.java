@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,11 +31,11 @@ public class TradeTransaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "symbol", nullable = false, length = 10)
@@ -58,4 +60,8 @@ public class TradeTransaction {
 
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "price_snapshot_id", nullable = false)
+    private PriceSnapshot priceSnapshot;
 }

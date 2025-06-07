@@ -4,10 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import test.crypto.trade.entity.PriceSnapshot;
+import test.crypto.trade.response.LatestBestPriceResponse;
 import test.crypto.trade.service.PriceSnapshotService;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/prices")
@@ -20,8 +19,7 @@ public class PriceController {
     }
 
     @GetMapping("/best")
-    public ResponseEntity<List<PriceSnapshot>> getLatestBestPrices() {
-        List<PriceSnapshot> prices = priceSnapshotService.getLatestBestPrices();
-        return ResponseEntity.ok(prices);
+    public ResponseEntity<LatestBestPriceResponse> getLatestBestPrices() {
+        return ResponseEntity.ok(priceSnapshotService.getLatestBestPrices());
     }
 }
